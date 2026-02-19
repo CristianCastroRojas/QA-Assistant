@@ -7,6 +7,10 @@ export interface ChatMessage {
   role: 'user' | 'assistant';
   content: string;
   timestamp: Date;
+  metadata?: {
+    type?: 'bug' | 'retest';
+    project?: Project;
+  };
 }
 
 export enum AppStep {
@@ -33,9 +37,17 @@ export interface RetestReport {
   version: string;
   browser: string;
   environment: string;
-  description: string;
+  originalDescription: string;
   retestResults: string;
   database: string;
   evidence: string;
   solved: 'Sí' | 'No';
+}
+
+export interface LocalDraft {
+  id: string;
+  project: Project;
+  action: Action;
+  data: BugReport | RetestReport;
+  timestamp: number;
 }
