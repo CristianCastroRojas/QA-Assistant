@@ -1,0 +1,5 @@
+{
+  "name": "QA Defect Assistant",
+  "description": "An AI-powered tool for QA analysts to professionally document bugs and retests for projects like GETNET and bPagos, with direct compatibility for Azure DevOps boards.",
+  "requestFramePermissions": []
+}
