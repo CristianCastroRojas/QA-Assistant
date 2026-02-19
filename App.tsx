@@ -1,4 +1,3 @@
-
 import React, { useState, useRef, useEffect } from 'react';
 import { 
   Project, 
@@ -8,7 +7,7 @@ import {
   RetestReport,
   ChatMessage 
 } from './types';
-import { THEMES, BROWSERS, ENVIRONMENTS } from './constants';
+import { THEMES, BROWSERS, ENVIRONMENTS, DATABASE_MAPPING } from './constants';
 import { generateBugReport, generateRetestReport } from './services/geminiService';
 
 const App: React.FC = () => {
@@ -118,6 +117,16 @@ const App: React.FC = () => {
     }
   };
 
+  const handleEnvChange = (env: string) => {
+    // Si el ambiente tiene una base de datos mapeada, se carga automáticamente.
+    const db = DATABASE_MAPPING[env] || '';
+    if (action === 'reportar') {
+      setBugForm(prev => ({ ...prev, environment: env, database: db || prev.database }));
+    } else if (action === 'retest') {
+      setRetestForm(prev => ({ ...prev, environment: env, database: db || prev.database }));
+    }
+  };
+
   const inputClass = (value: string) => `
     w-full p-5 rounded-2xl bg-slate-50 border transition-all placeholder:text-slate-300 font-medium outline-none
     ${showErrors && value.trim() === '' 
@@ -164,7 +173,7 @@ const App: React.FC = () => {
                 <div className="w-20 h-20 rounded-3xl bg-blue-100 flex items-center justify-center text-5xl mb-6 shadow-inner group-hover:scale-110 transition-transform duration-500">💳</div>
                 <h3 className="text-3xl font-black text-blue-600 uppercase tracking-tighter">BPAGOS</h3>
                 <p className="text-slate-400 text-sm mt-3 font-bold uppercase tracking-widest">Adquirencia</p>
-                <div className="mt-8 flex items-center gap-2 text-red-600 font-bold text-[10px] tracking-widest uppercase opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                <div className="mt-8 flex items-center gap-2 text-blue-600 font-bold text-[10px] tracking-widest uppercase opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                   Seleccionar <span className="text-lg">→</span>
                 </div>
               </div>
@@ -270,7 +279,7 @@ const App: React.FC = () => {
                   </div>
                   <div className="space-y-3">
                     <label className="text-xs font-black text-slate-500 uppercase tracking-widest ml-1">Ambiente: <span className="text-red-500 font-bold">*</span></label>
-                    <select className={inputClass(bugForm.environment)} value={bugForm.environment} onChange={e => setBugForm({...bugForm, environment: e.target.value})} required>
+                    <select className={inputClass(bugForm.environment)} value={bugForm.environment} onChange={e => handleEnvChange(e.target.value)} required>
                       <option value="">Selecciona ambiente...</option>
                       {currentEnvList.map(env => (
                         <option key={env} value={env}>{env}</option>
@@ -319,7 +328,7 @@ const App: React.FC = () => {
                   </div>
                   <div className="space-y-3">
                     <label className="text-xs font-black text-slate-500 uppercase tracking-widest ml-1">Ambiente: <span className="text-red-500 font-bold">*</span></label>
-                    <select className={inputClass(retestForm.environment)} value={retestForm.environment} onChange={e => setRetestForm({...retestForm, environment: e.target.value})} required>
+                    <select className={inputClass(retestForm.environment)} value={retestForm.environment} onChange={e => handleEnvChange(e.target.value)} required>
                       <option value="">Selecciona ambiente...</option>
                       {currentEnvList.map(env => (
                         <option key={env} value={env}>{env}</option>
@@ -437,7 +446,7 @@ const App: React.FC = () => {
                       className="mt-8 flex items-center justify-center gap-3 w-full py-4 bg-slate-900 text-white text-[10px] font-black rounded-2xl border border-white/10 transition-all uppercase tracking-[0.3em] hover:bg-slate-800 hover:scale-[1.02] active:scale-95 shadow-xl"
                     >
                       <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3" />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3" />
                       </svg>
                       Copiar para Azure DevOps
                     </button>
@@ -496,7 +505,7 @@ const App: React.FC = () => {
              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
              System Online
           </div>
-          <span className="opacity-50">v2.5.7-stable</span>
+          <span className="opacity-50">v2.5.9-stable</span>
         </div>
       </footer>
     </div>

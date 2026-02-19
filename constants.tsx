@@ -49,6 +49,50 @@ export const ENVIRONMENTS = {
   ]
 };
 
+export const DATABASE_MAPPING: Record<string, string> = {
+  // GETNET
+  "Autorizador - GETNET EVO": "pays_getnet_evo_aas",
+  "PayStudio - GETNET EVO": "pays_getnet_evo_bo",
+  "Portal de Comercio - GETNET EVO": "pays_getnet_evo_pc",
+  "Autorizador - GETNET FUTURE": "pays_getnet_future_aas",
+  "PayStudio - GETNET FUTURE": "pays_getnet_future_bo",
+  "Portal de Comercio - GETNET FUTURE": "pays_getnet_future_pc",
+  "Autorizador - GETNET RELEASE": "pays_getnet_release_aas",
+  "PayStudio - GETNET RELEASE": "pays_getnet_release_bo",
+  "Portal de Comercio - GETNET RELEASE": "pays_getnet_release_pc",
+  "Autorizador - GETNET HOTFIX": "pays_getnet_hotfix_aas",
+  "PayStudio - GETNET HOTFIX": "pays_getnet_hotfix_bo",
+  "Portal de Comercio - GETNET HOTFIX": "pays_getnet_hotfix_pc",
+  "Autorizador - GETNET CERT": "singular_e4_aas",
+  "PayStudio - GETNET CERT": "singular_e4_bo",
+  "Portal de Comercio - GETNET CERT": "singular_e4_PortalC_ciclo4",
+  "Autorizador - GETNET PREPROD": "pprod_cl_aas",
+  "PayStudio - GETNET PREPROD": "pays_pprod_bo",
+  "Portal de Comercio - GETNET PREPROD": "singular_pprd_portalc",
+  "Autorizador - GETNET UAT": "pays_getnet_uat_aas",
+  "PayStudio - GETNET UAT": "pays_getnet_uat_bo",
+  "Portal de Comercio - GETNET UAT": "pays_getnet_uat_pc",
+  // BPAGOS
+  "Autorizador - BPAGOS EVO": "pays_bpagos_evo_aas",
+  "PayStudio - BPAGOS EVO": "pays_bpagos_evo_bo",
+  "Portal de Comercio - BPAGOS EVO": "pays_bpagos_evo_pc",
+  "Autorizador - BPAGOS FUTURE": "pays_bpagos_future_aas",
+  "PayStudio - BPAGOS FUTURE": "pays_bpagos_future_bo",
+  "Portal de Comercio - BPAGOS FUTURE": "pays_bpagos_future_pc",
+  "Autorizador - BPAGOS RELEASE": "pays_bpagos_release_aas",
+  "PayStudio - BPAGOS RELEASE": "pays_bpagos_release_bo",
+  "Portal de Comercio - BPAGOS RELEASE": "pays_bpagos_release_pc",
+  "Autorizador - BPAGOS HOTFIX": "pays_bpagos_hotfix_aas",
+  "PayStudio - BPAGOS HOTFIX": "pays_bpagos_hotfix_bo",
+  "Portal de Comercio - BPAGOS HOTFIX": "pays_bpagos_hotfix_pc",
+  "Autorizador - BPAGOS CERT": "bchile_cert_aas",
+  "PayStudio - BPAGOS CERT": "bchile_cert_bo",
+  "Portal de Comercio - BPAGOS CERT": "bchile_cert_pco",
+  "Autorizador - BPAGOS UAT": "pays_bpagos_uat_aas",
+  "PayStudio - BPAGOS UAT": "pays_bpagos_uat_bo",
+  "Portal de Comercio - BPAGOS UAT": "pays_bpagos_uat_pc"
+};
+
 export const QUESTIONS_REPORT = [
   "¿Cuál es la versión de la aplicación?",
   "¿Qué navegador estás utilizando?",
